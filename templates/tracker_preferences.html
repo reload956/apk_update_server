@@ -1,0 +1,71 @@
+{% extends 'admin.html' %}
+{%block style%}
+<link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/tracker.css')}}>
+
+{%endblock%}
+
+{% block content %}
+<h2>Список сотрудников</h2>
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>UID</th>
+            <th>Name</th>
+            <th>Last Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for el in data %}
+        <tr>
+            <td>{{el.id}}</td>
+            <td>{{el.userId}}</td>
+            <td>{{el.user}}</td>
+            <td>{{el.date}}</td>
+        </tr>
+        {% endfor %}
+        <tbody>
+    </table>
+</div>
+
+<div class="container mt-5">
+    <h1>Редектирование информации</h1>
+    <form method="post" action="/admin/tracker/save">
+
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled">
+        <label class="form-check-label" for="flexCheckDisabled">Редактирование записей</label><br><br>
+
+        <div id="block_edit_select"  style="display: none;">
+            <label for="user-select">Выберите трек:</label>
+            <select name="user_select" class="form-control" id="user-select">
+                <option value=""></option>
+                {% for el in data %}
+                <option value="{{el.id}}">{{el.user}}</option>
+                {% endfor %}
+            </select><br>
+            <label class="form-track_id" for="user_track_id">Идентификатор пользователя</label>
+            <input type="text"  name="user_track_id" id="user_track_id" readonly="readonly" class="form-control" style="max-width: 100px;">
+        </div>
+        <label for="user">Имя контрагента</label>
+        <input type="text" name="user" id="user" class="form-control" maxlength="100"><br>
+        <label for="uid">Идентификатор контрагента</label>
+        <input type="text" name="uid" id="uid" class="form-control" maxlength="36"><br>
+
+        <div id="block_new" style="display: block;">
+            <input type="submit" class="btn btn-success" value="Добавить">
+        </div>
+        <div id="block_edit_buttons" style="display: none;">
+            <input type="submit" class="btn btn-warning" value="Обновить" formaction="/admin/tracker/update">
+            <input type="submit" class="btn btn-danger" value="Удалить" formaction="/admin/tracker/delete">
+        </div>
+    </form>
+</div>
+{% endblock %}
+{%block script%}
+<script>
+var ids = {{ids|tojson }}
+var names = {{names|tojson }}
+</script>
+<script type="text/javascript" src={{url_for('static',filename='scripts/tracker.js')}}></script>
+{%endblock%}

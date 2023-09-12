@@ -1,0 +1,39 @@
+#grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2vw;
+  }
+#grid > div {
+  position: relative;
+  font-size: 5vw;
+  padding: .5em;
+  background-image: url("../res/apk.svg");
+  background-size: 100% 100%;
+  text-align: center;
+  border-radius: 20px;
+  outline: 2px solid #CDDCDF;
+  color: black;
+}
+
+#grid > div > div {
+  font-size: 3vw;
+  padding: .3em;
+  background: #CDDCDF;
+  opacity: 0.9;
+  text-align: bottom-right;
+  border-radius: 30px;
+}
+
+#grid > div > a {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  height: 60px;
+  width: 60px;
+  background-image: url("../res/trash.svg");
+  background-size: 100% 100%;
+  color: white;
+  padding: 5px;
+  border-radius: 30px;
+}

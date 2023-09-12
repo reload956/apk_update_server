@@ -1,0 +1,48 @@
+{% extends 'admin.html' %}
+
+{%block style%}
+<link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/upload.css')}}>
+<script type="text/javascript" src={{url_for('static',filename='scripts/jquery-3.3.1.min.js')}}></script>
+{%endblock%}
+
+{% block content %}
+      <form method="post" action="/admin/upload" enctype = "multipart/form-data">
+		<div>
+			<label for="file-input">Выберите файл</label>
+			<span>или перетащите его сюда</span>
+			<input id="file-input" type="file" name="file" class="form-control">
+
+		</div><br>
+	    <div>
+		    <input  type="checkbox" name="flexCheckDisabled" class="form-check-input" id="flexCheckDisabled">
+			<label class="form-check-label" for="flexCheckDisabled">Существующее приложение</label><br>
+	    </div>
+ 		<div id="block_update_select"  style="display: none;">
+            <label for="manifest-select">Выберите файл</label>
+            <select name="manifest-select" class="form-control" id="manifest-select">
+                <option value=""></option>
+                {% for el in jsons %}
+                <option value="{{el}}">{{el}}</option>
+                {% endfor %}
+			</select><br>
+		</div>
+		  <div id="block_name_select" style="display: block;">
+		  <label for="manifest">Название манифеста</label>
+        	<input type="text" name="manifest" id="manifest" class="form-control" maxlength="40"><br>
+		  </div>
+		  <div>
+			<label for="version">Номер версии</label>
+        	<input type="number" name="version" id="version" class="form-control" max="999"><br>
+		  	<label for="description">Описание обновления</label>
+			  <textarea name="description" id="description" class="form-control" maxlength="256" rows="3"></textarea><br>
+		  </div>
+         <input type = "submit" value = "Сохранить" class="btn btn-success" />
+      </form>
+{% endblock %}
+
+{%block script%}
+<script>
+
+</script>
+<script type="text/javascript" src={{url_for('static',filename='scripts/update.js')}}></script>
+{%endblock%}
