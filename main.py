@@ -183,7 +183,7 @@ def upload():
         description = request.form['description']
         file_name = name.replace(".json", "_" + version + ".apk")
         obj = json.dumps(
-            {'url': "http://82.162.17.37:2922/applications/" + file_name, 'versionCode': int(version),
+            {'url': "http://example.com/applications/" + file_name, 'versionCode': int(version),
              'updateMessage': description}, separators=(', ', ':'), indent=2)
         print(obj)
         obj = obj.replace('/n', '')
